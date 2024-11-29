@@ -62,7 +62,7 @@
 /* Set the Edge Triggered behaviour for the target file descriptor */
 #define EPOLLET		((__poll_t)(1U << 31))
 
-/*
+/* 
  * On x86-64 make the 64bit structure have the same alignment as the
  * 32bit structure. This makes 32bit emulation easier.
  *
@@ -74,7 +74,6 @@
 #define EPOLL_PACKED
 #endif
 
-#ifdef __KERNEL__
 struct epoll_event {
 	__poll_t events;
 	__u64 data;
@@ -92,5 +91,4 @@ static __inline__ void ep_take_care_of_epollwakeup(struct epoll_event *epev)
 	epev->events &= ~EPOLLWAKEUP;
 }
 #endif
-#endif /* __KERNEL__ */
 #endif /* _LINUX_EVENTPOLL_H */
